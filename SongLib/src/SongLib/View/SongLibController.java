@@ -10,14 +10,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.event.*;
 
 public class SongLibController {
 	
-	@FXML Button add;
-	@FXML Button delete;
-	@FXML Button edit;
-	@FXML Button save;
-	@FXML Button cancel;
+	@FXML Button addButton;
+	@FXML Button deleteButton;
+	@FXML Button editButton;
+	@FXML Button saveButton;
+	@FXML Button cancelButton;
 	
 	@FXML TextField nameField;
 	@FXML TextField artistField;
@@ -37,6 +38,7 @@ public class SongLibController {
 		
 		songList.getSelectionModel().selectedIndexProperty()
 		.addListener((obs, oldval, newval) -> showItem(primaryStage));
+		
 	}
 	
 	private void showItem(Stage primaryStage) {
@@ -50,8 +52,16 @@ public class SongLibController {
 		artistField.setText(artist);
 		albumField.setText(album);
 		yearField.setText("" + year);
+		setFieldsWritable(false);
 	}
 
+	public void setFieldsWritable(boolean isWritable) {
+		nameField.setEditable(isWritable);
+		artistField.setEditable(isWritable);
+		albumField.setEditable(isWritable);
+		yearField.setEditable(isWritable);
+	}
+	
 	public void addSong(ActionEvent e) {
 		
 	}
@@ -59,7 +69,7 @@ public class SongLibController {
 		
 	}
 	public void editSongInfo(ActionEvent e) {
-		
+		setFieldsWritable(true);
 	}
 	public void saveEdit(ActionEvent e) {
 		
