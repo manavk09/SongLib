@@ -12,16 +12,13 @@ import javafx.stage.Stage;
 public class SongLibApp extends Application{
 
 	public static ArrayList<Song> songList = new ArrayList<Song>();
-	public static ArrayList<String> songStrings = new ArrayList<String>();
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
 		//Load the songList
 		songList.add(new Song("songname", "artistname", 2069, "albumyee"));
-		for(int i = 0; i < songList.size(); i++) {
-			songStrings.add(songList.get(i).toString());
-		}
+		songList.add(new Song("songname2", "artistname2", 2222, "alsadfsd"));
 		
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/SongLib/View/SongLibUI.fxml"));
@@ -29,7 +26,7 @@ public class SongLibApp extends Application{
 		VBox root = (VBox) loader.load();
 		
 		SongLibController songLibController = loader.getController();
-		songLibController.start();
+		songLibController.start(primaryStage);
 		
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);

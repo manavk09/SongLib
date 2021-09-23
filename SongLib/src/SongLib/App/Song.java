@@ -31,10 +31,10 @@ public class Song {
 	public int getYear() {
 		return year;
 	}
-	public void setAlbum(String album) {
+	public void setAlbumName(String album) {
 		this.album = album;
 	}
-	public String getAlbum() {
+	public String getAlbumName() {
 		return album;
 	}
 	public String toString() {
