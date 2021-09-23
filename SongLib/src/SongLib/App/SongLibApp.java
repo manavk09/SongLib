@@ -12,6 +12,7 @@ public class SongLibApp extends Application{
 
 	public static ArrayList<String> songList;
 	
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
