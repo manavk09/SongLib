@@ -47,7 +47,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SongLibController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -98,15 +98,15 @@
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="273.0" prefWidth="158.0">
                                  <children>
-                                    <ListView layoutX="-1.0" layoutY="25.0" prefHeight="304.0" prefWidth="185.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                                    <ListView fx:id="songList" layoutX="-1.0" layoutY="25.0" prefHeight="304.0" prefWidth="185.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" />
                                  </children>
                               </AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="94.0" prefWidth="85.0">
                                  <children>
                                     <HBox layoutX="-4.099999904632568" layoutY="-3.0999999046325684" prefHeight="33.0" prefWidth="185.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="120.0" text="Add" />
-                                          <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="120.0" text="Delete" />
+                                          <Button fx:id="addButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="120.0" text="Add" />
+                                          <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="120.0" text="Delete" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -172,7 +172,7 @@
                                              <children>
                                                 <VBox layoutY="20.0" prefHeight="305.0" prefWidth="216.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                    <children>
-                                                      <TextField prefHeight="54.0" prefWidth="220.0">
+                                                      <TextField fx:id="nameField" prefHeight="54.0" prefWidth="220.0">
                                                          <VBox.margin>
                                                             <Insets bottom="10.0" />
                                                          </VBox.margin>
@@ -180,7 +180,7 @@
                                                             <Font name="Arial" size="20.0" />
                                                          </font>
                                                       </TextField>
-                                                      <TextField prefHeight="54.0" prefWidth="220.0">
+                                                      <TextField fx:id="artistField" prefHeight="54.0" prefWidth="220.0">
                                                          <VBox.margin>
                                                             <Insets bottom="10.0" />
                                                          </VBox.margin>
@@ -188,7 +188,7 @@
                                                             <Font name="Arial" size="20.0" />
                                                          </font>
                                                       </TextField>
-                                                      <TextField prefHeight="54.0" prefWidth="220.0">
+                                                      <TextField fx:id="albumField" prefHeight="54.0" prefWidth="220.0">
                                                          <VBox.margin>
                                                             <Insets bottom="10.0" />
                                                          </VBox.margin>
@@ -196,7 +196,7 @@
                                                             <Font name="Arial" size="20.0" />
                                                          </font>
                                                       </TextField>
-                                                      <TextField prefHeight="54.0" prefWidth="220.0">
+                                                      <TextField fx:id="yearField" prefHeight="54.0" prefWidth="220.0">
                                                          <VBox.margin>
                                                             <Insets bottom="10.0" />
                                                          </VBox.margin>
@@ -216,13 +216,13 @@
                                  <children>
                                     <HBox layoutX="28.0" layoutY="-43.0" prefHeight="33.0" prefWidth="442.0" spacing="139.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <Button mnemonicParsing="false" text="Edit">
+                                          <Button fx:id="editButton" mnemonicParsing="false" text="Edit">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
                                           </Button>
-                                          <Button mnemonicParsing="false" text="Save" />
-                                          <Button mnemonicParsing="false" text="Cancel" />
+                                          <Button fx:id="saveButton" mnemonicParsing="false" text="Save" />
+                                          <Button fx:id="cancelButton" mnemonicParsing="false" text="Cancel" />
                                        </children>
                                     </HBox>
                                  </children>
