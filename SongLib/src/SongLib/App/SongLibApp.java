@@ -24,7 +24,15 @@ public class SongLibApp extends Application{
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+
 		readFromfile();
+
+		
+		//Load the songList
+		songList.add(new Song("songname", "artistname", 2069, "albumyee"));
+		songList.add(new Song("songname2", "artistname2", 2222, "alsadfsd"));
+		
+
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/SongLib/View/SongLibUI.fxml"));
 		System.out.println(loader.getLocation());
