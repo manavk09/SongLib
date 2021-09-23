@@ -2,6 +2,7 @@ package SongLib.App;
 
 import java.util.ArrayList;
 
+import SongLib.View.SongLibController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -22,11 +23,14 @@ public class SongLibApp extends Application{
 			songStrings.add(songList.get(i).toString());
 		}
 		
-		
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/SongLib/View/SongLibUI.fxml"));
 		System.out.println(loader.getLocation());
 		VBox root = (VBox) loader.load();
+		
+		SongLibController songLibController = loader.getController();
+		songLibController.start();
+		
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.show();
