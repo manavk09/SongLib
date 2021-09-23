@@ -1,5 +1,6 @@
 package SongLib.App;
-import java.io.File;
+
+import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -9,8 +10,13 @@ import javafx.stage.Stage;
 
 public class SongLibApp extends Application{
 
+	public static ArrayList<String> songList;
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		
+		//Load the songList
+		
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/SongLib/View/SongLibUI.fxml"));
 		System.out.println(loader.getLocation());
