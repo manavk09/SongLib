@@ -29,8 +29,7 @@ public class SongLibApp extends Application{
 
 		
 		//Load the songList
-		songList.add(new Song("songname", "artistname", 2069, "albumyee"));
-		songList.add(new Song("songname2", "artistname2", 2222, "alsadfsd"));
+		
 		
 
 		FXMLLoader loader = new FXMLLoader();
