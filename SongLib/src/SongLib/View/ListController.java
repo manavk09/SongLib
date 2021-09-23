@@ -11,7 +11,7 @@ public class ListController {
 	private ObservableList<String> obsSongList;
 	
 	public void start() {
-		obsSongList = FXCollections.observableArrayList(SongLibApp.songList);
+		obsSongList = FXCollections.observableArrayList(SongLibApp.songStrings);
 		listView.setItems(obsSongList);
 	}
 }
