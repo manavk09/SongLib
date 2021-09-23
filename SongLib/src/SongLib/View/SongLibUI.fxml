@@ -105,8 +105,8 @@
                                  <children>
                                     <HBox layoutX="-4.099999904632568" layoutY="-3.0999999046325684" prefHeight="33.0" prefWidth="185.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <Button fx:id="addButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="120.0" text="Add" />
-                                          <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="120.0" text="Delete" />
+                                          <Button fx:id="addButton" mnemonicParsing="false" onAction="#addSong" prefHeight="31.0" prefWidth="120.0" text="Add" />
+                                          <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteSong" prefHeight="31.0" prefWidth="120.0" text="Delete" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -216,13 +216,13 @@
                                  <children>
                                     <HBox layoutX="28.0" layoutY="-43.0" prefHeight="33.0" prefWidth="442.0" spacing="139.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <Button fx:id="editButton" mnemonicParsing="false" text="Edit">
+                                          <Button fx:id="editButton" mnemonicParsing="false" onAction="#editSongInfo" text="Edit">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
                                           </Button>
-                                          <Button fx:id="saveButton" mnemonicParsing="false" text="Save" />
-                                          <Button fx:id="cancelButton" mnemonicParsing="false" text="Cancel" />
+                                          <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveEdit" text="Save" />
+                                          <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelEdit" text="Cancel" />
                                        </children>
                                     </HBox>
                                  </children>
