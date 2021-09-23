@@ -20,7 +20,7 @@ public class Song {
 		return songName;
 	}
 	public void setArtistName(String name) {
-		this.artistName = artistName;
+		this.artistName = name;
 	}
 	public String getArtistName() {
 		return artistName;
@@ -38,7 +38,7 @@ public class Song {
 		return album;
 	}
 	public String toString() {
-		return songName + " " + artistName;
+		return songName + " - " + artistName;
 	}
 	
 }
