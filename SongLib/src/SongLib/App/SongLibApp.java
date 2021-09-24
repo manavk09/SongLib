@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import SongLib.View.SongLibController;
@@ -18,8 +19,7 @@ import javafx.stage.Stage;
 
 public class SongLibApp extends Application{
 
-	public static ArrayList<Song> songList = new ArrayList<Song>();
-	
+	public static List<Song> songList = new ArrayList<>();
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 

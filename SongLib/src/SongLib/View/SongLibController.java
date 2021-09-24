@@ -1,6 +1,11 @@
 package SongLib.View;
 
 import SongLib.App.SongLibApp;
+
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 import SongLib.App.Song;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -112,6 +117,22 @@ public class SongLibController {
         deleteButton.setDisable(false);
         cancelButton.setDisable(true);
         saveButton.setDisable(true);
+    }
+    
+    public void sort() {
+    	Collections.sort(SongLibApp.songList,new Comparator<Song>(){
+            public int compare(Song a,Song b){
+            	Song s1 =  a;
+        		Song s2 =  b;
+        		
+        		int result = s1.getSongName().compareToIgnoreCase(s2.getSongName());
+        		if(result != 0) {
+        			return result;
+        		}
+        		else{
+        			return s1.getArtistName().compareToIgnoreCase(s2.getArtistName());
+        		}
+            }});
     }
     
     public void cancelEdit(ActionEvent e) {
