@@ -80,23 +80,19 @@ public class SongLibController {
     }
     
     public void editSongInfo(ActionEvent e) {
-        //Enable and disable fields and buttons appropriately
-        setFieldsWritable(true);
-        editButton.setDisable(true);
-        addButton.setDisable(true);
-        deleteButton.setDisable(true);
-        cancelButton.setDisable(false);
-        saveButton.setDisable(false);
-        
+        setEditing(true);
     }
     
     public void saveEdit(ActionEvent e) {
-        songList.getSelectionModel().getSelectedItem().setName(nameField.getText());
-        songList.getSelectionModel().getSelectedItem().setAlbumName(albumField.getText());
-        songList.getSelectionModel().getSelectedItem().setArtistName(artistField.getText());
+    	int index = songList.getSelectionModel().getSelectedIndex();
+    	Song song = obsSongList.get(index);
+    	
+    	song.setName(nameField.getText());
+    	song.setAlbumName(albumField.getText());
+    	song.setArtistName(artistField.getText());
         try {
             int year = Integer.parseInt(yearField.getText());
-            songList.getSelectionModel().getSelectedItem().setYear(year);
+            song.setYear(year);
         }
         catch(Exception ex) {
             yearField.setText("" + songList.getSelectionModel().getSelectedItem().getYear());
@@ -106,16 +102,24 @@ public class SongLibController {
             alert.setHeaderText("Invalid input! Make sure you don't have the '|' character anywhere and only numbers for the year.");
             alert.showAndWait();
         }
-        setFieldsWritable(false);
-        editButton.setDisable(false);
-        addButton.setDisable(false);
-        deleteButton.setDisable(false);
-        cancelButton.setDisable(true);
-        saveButton.setDisable(true);
+        
+        setEditing(false);
+        obsSongList.set(index, song);
     }
     
     public void cancelEdit(ActionEvent e) {
-        
+    	setEditing(false);
+    	showItem(mainStage);
+    }
+    
+    public void setEditing(boolean isEditing) {
+    	setFieldsWritable(isEditing);
+        editButton.setDisable(isEditing);
+        addButton.setDisable(isEditing);
+        deleteButton.setDisable(isEditing);
+        cancelButton.setDisable(!isEditing);
+        saveButton.setDisable(!isEditing);
+        songList.setDisable(isEditing);
     }
     
 
