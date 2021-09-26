@@ -158,17 +158,13 @@ public class SongLibController {
                 int index = findSong(name, artist);
                 System.out.println("Added song, index is:" + index);
                 System.out.println(songList.getSelectionModel().isEmpty());
-                //PROBLEM to fix, thing doesn't select itme automatically after adding into an empty list
+                //PROBLEM to fix, thing doesn't select item automatically after adding into an empty list
     		}
     		
     	}
-<<<<<<< HEAD
-    	
+    	SongLibApp.writeToFile();
     	if(!obsSongList.isEmpty())
     		obsSongList.set(0, obsSongList.get(0));
-=======
-    	SongLibApp.writeToFile();
->>>>>>> branch 'master' of git@github.com:manavk09/SongLib.git
         
     }
     
