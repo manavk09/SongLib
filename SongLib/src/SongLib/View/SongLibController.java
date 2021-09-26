@@ -65,7 +65,7 @@ public class SongLibController {
     }
     
     private void showItem(Stage primaryStage) {
-    	if(isSorting || obsSongList.isEmpty())
+    	if(isSorting || obsSongList.isEmpty() || songList.getSelectionModel().getSelectedItem() == null)
     		return;
     	
         String name, artist, album, year;
@@ -94,10 +94,8 @@ public class SongLibController {
     }
     
     public void addSong(ActionEvent e) {
-    	nameField.setText("");
-        artistField.setText("");
-        albumField.setText("");
-        yearField.setText("");
+    	saveAction = SaveAction.ADDING_SONG;
+    	setFieldsBlank();
     	setFieldsWritable(true);
         
     	editButton.setDisable(true);
@@ -107,18 +105,21 @@ public class SongLibController {
     	saveButton.setDisable(false);
     	saveButton.setText("Add song");
     	
-    	//Need to check if the song user is trying to add is valid to add
-    	
-        
     }
     
     public void deleteSong(ActionEvent e) {
-    	//If all songs are deleted/the list is empty, block out the delete button
     	int index = songList.getSelectionModel().getSelectedIndex();
     	obsSongList.remove(index);
+    	showItem(mainStage);
+    	if(obsSongList.isEmpty()) {
+    		deleteButton.setDisable(true);
+    		editButton.setDisable(true);
+    		setFieldsBlank();
+    	}
     }
     
     public void editSongInfo(ActionEvent e) {
+    	saveAction = SaveAction.EDITING_SONG;
         setEditing(true);
     }
     
@@ -145,12 +146,22 @@ public class SongLibController {
     		if(checkValidSong(name, artist, album, year)) {
     			Song newSong = new Song(name, artist, year, album);
                 obsSongList.add(newSong);
+                
                 saveButton.setText("Save");
+                deleteButton.setDisable(false);
+                
                 setEditing(false);
                 sort();
+                int index = findSong(name, artist);
+                System.out.println("Added song, index is:" + index);
+                System.out.println(songList.getSelectionModel().isEmpty());
+                //PROBLEM to fix, thing doesn't select itme automatically after adding into an empty list
     		}
     		
     	}
+    	
+    	if(!obsSongList.isEmpty())
+    		obsSongList.set(0, obsSongList.get(0));
         
     }
     
@@ -162,7 +173,8 @@ public class SongLibController {
     		if(!year.isBlank()) {
     			yearNum = Integer.parseInt(year);
     		}
-    		if(!obsSongList.isEmpty() && findSong(name, artist) != null) {
+    		int songSearchIndex = findSong(name, artist);
+    		if(!obsSongList.isEmpty() && songSearchIndex >= 0 && songSearchIndex != songList.getSelectionModel().getSelectedIndex()) {
     			errorType = InputErrorType.SONG_EXISTS;
     		}
     		if(name.isBlank() || artist.isBlank()) {
@@ -218,7 +230,7 @@ public class SongLibController {
     	isSorting = false;
     }
     
-    public Song findSong(String songName, String songArtist) {
+    public int findSong(String songName, String songArtist) {
     	Comparator<Song> comparator = new Comparator<Song>() {
     		public int compare(Song a, Song b) {
     			int result = a.getSongName().compareToIgnoreCase(b.getSongName());
@@ -232,20 +244,19 @@ public class SongLibController {
     		}
     	};
     	Song keySong = new Song(songName, songArtist, "", "");
-    	int index = Collections.binarySearch(obsSongList, keySong, comparator);
-    	if(index >= 0)
-    		return obsSongList.get(index);
-    	else
-    		return null;
+    	return Collections.binarySearch(obsSongList, keySong, comparator);
     }
     
     public void cancelEdit(ActionEvent e) {
     	setEditing(false);
+    	if(obsSongList.isEmpty()) {
+    		editButton.setDisable(true);
+    		deleteButton.setDisable(true);
+    	}
     	showItem(mainStage);
     }
     
     public void setEditing(boolean isEditing) {
-    	saveAction = SaveAction.EDITING_SONG;
     	setFieldsWritable(isEditing);
     	
         editButton.setDisable(isEditing);
@@ -257,5 +268,11 @@ public class SongLibController {
         songList.setDisable(isEditing);
     }
     
+    public void setFieldsBlank() {
+    	nameField.setText("");
+        artistField.setText("");
+        albumField.setText("");
+        yearField.setText("");
+    }
 
 }
