@@ -104,6 +104,7 @@ public class SongLibController {
     	cancelButton.setDisable(false);
     	saveButton.setDisable(false);
     	saveButton.setText("Add song");
+    
     	
     }
     
@@ -128,6 +129,8 @@ public class SongLibController {
 		String artist = artistField.getText().trim();
 		String album = albumField.getText().trim();
 		String year = yearField.getText().trim();
+		
+		
 		
     	if(saveAction == SaveAction.EDITING_SONG) {
 	    	int index = songList.getSelectionModel().getSelectedIndex();
@@ -159,9 +162,13 @@ public class SongLibController {
     		}
     		
     	}
+<<<<<<< HEAD
     	
     	if(!obsSongList.isEmpty())
     		obsSongList.set(0, obsSongList.get(0));
+=======
+    	SongLibApp.writeToFile();
+>>>>>>> branch 'master' of git@github.com:manavk09/SongLib.git
         
     }
     
