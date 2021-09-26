@@ -45,6 +45,10 @@ public class Song {
 		return album;
 	}
 	
+	public String fullName() {
+		return  songName + "\t" + artistName + "\t" + year + "\t" + album;
+	}
+	
 	public String toString() {
 		return songName + " - " + artistName;
 	}

@@ -106,6 +106,7 @@ public class SongLibController {
     	cancelButton.setDisable(false);
     	saveButton.setDisable(false);
     	saveButton.setText("Add song");
+    
     	
     	//Need to check if the song user is trying to add is valid to add
     	
@@ -127,6 +128,8 @@ public class SongLibController {
 		String artist = artistField.getText().trim();
 		String album = albumField.getText().trim();
 		String year = yearField.getText().trim();
+		
+		
 		
     	if(saveAction == SaveAction.EDITING_SONG) {
 	    	int index = songList.getSelectionModel().getSelectedIndex();
@@ -151,6 +154,7 @@ public class SongLibController {
     		}
     		
     	}
+    	SongLibApp.writeToFile();
         
     }
     

@@ -1,3 +1,4 @@
-aname	artistname	2069	albumyee
-bname	artistname2	2222	alsadfsd
-dname	artistname3	2540	afnbldnf
+mirror	wayne	2000	test
+test	test	2000	test
+test1	test2	2000	test3
+tooSexy	drake	2021	clb

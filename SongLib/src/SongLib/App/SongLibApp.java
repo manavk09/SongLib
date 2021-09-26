@@ -1,8 +1,10 @@
 package SongLib.App;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -22,7 +24,7 @@ public class SongLibApp extends Application{
 	public static List<Song> songList = new ArrayList<>();
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-
+		//S//ystem.out.println("the path is" + System.getProperty("user.dir"));
 		readFromfile();
 
 		
@@ -65,9 +67,38 @@ public class SongLibApp extends Application{
 	    
 
 	}
+	public static void writeToFile() {
+		
+		try {
+			 String tempPath = System.getProperty("user.dir");
+			 String fullPath = tempPath+"/src/songList.txt";
+			 
+			 FileWriter fwrite = new FileWriter(fullPath);
+			 BufferedWriter f_writer = new BufferedWriter(fwrite);
+			 
+			 for(int i = 0; i < SongLibController.obsSongList.size(); i++) {
+				 String text = SongLibController.obsSongList.get(i).fullName() + "\n";
+				 f_writer.write(text);
+			 }
+			 
+			 f_writer.close();
+        }
+ 
+        catch (IOException e) {
+            // Print the exception
+            System.out.print(e.getMessage());
+        }
+		
+	}
+	public static void editLine() {
+		
+	}
+
+	
 	
 	public static void main(String[] args) {
 		launch(args);
+		
 
 	}
 }
