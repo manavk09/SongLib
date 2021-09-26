@@ -54,7 +54,7 @@ public class SongLibApp extends Application{
 		    while (sc.hasNextLine()) {
 		    	String t = sc.nextLine();
 		    	List<String> temp = Arrays.asList(t.split("\t"));
-				songList.add(new Song(temp.get(0),temp.get(1),Integer.parseInt(temp.get(2)),temp.get(3)));		
+				songList.add(new Song(temp.get(0), temp.get(1), (temp.get(2)), temp.get(3)));		
 		    }
 		    sc.close();
 		} 

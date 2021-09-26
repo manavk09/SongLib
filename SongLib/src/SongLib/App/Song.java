@@ -3,10 +3,10 @@ package SongLib.App;
 public class Song {
 	private String songName;
 	private String artistName;
-	private int year;
+	private String year;
 	private String album;
 	
-	public Song(String songName, String artistName, int year, String album) {
+	public Song(String songName, String artistName, String year, String album) {
 		this.songName = songName;
 		this.artistName = artistName;
 		this.year = year;
@@ -29,11 +29,11 @@ public class Song {
 		return artistName;
 	}
 	
-	public void setYear(int year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 	
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
 	
