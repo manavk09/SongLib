@@ -29,8 +29,6 @@ public class SongLibApp extends Application{
 
 		
 		//Load the songList
-		
-		
 
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/SongLib/View/SongLibUI.fxml"));
@@ -90,6 +88,7 @@ public class SongLibApp extends Application{
         }
 		
 	}
+	
 	public static void editLine() {
 		
 	}

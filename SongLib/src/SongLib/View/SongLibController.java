@@ -112,11 +112,13 @@ public class SongLibController {
     	int index = songList.getSelectionModel().getSelectedIndex();
     	obsSongList.remove(index);
     	showItem(mainStage);
+    	
     	if(obsSongList.isEmpty()) {
     		deleteButton.setDisable(true);
     		editButton.setDisable(true);
     		setFieldsBlank();
     	}
+    	SongLibApp.writeToFile();
     }
     
     public void editSongInfo(ActionEvent e) {
