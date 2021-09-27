@@ -88,10 +88,6 @@ public class SongLibApp extends Application{
         }
 		
 	}
-	
-	public static void editLine() {
-		
-	}
 
 	
 	

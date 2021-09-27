@@ -124,6 +124,7 @@ public class SongLibController {
     public void editSongInfo(ActionEvent e) {
     	saveAction = SaveAction.EDITING_SONG;
         setEditing(true);
+        SongLibApp.writeToFile();
     }
     
     public void saveEdit(ActionEvent e) {
