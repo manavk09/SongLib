@@ -7,11 +7,6 @@ import java.util.Comparator;
 
 import SongLib.App.Song;
 import javafx.collections.*;
-/*
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.ListChangeListener;
-*/
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -132,11 +127,10 @@ public class SongLibController {
 		String artist = artistField.getText().trim();
 		String album = albumField.getText().trim();
 		String year = yearField.getText().trim();
-		
-		
+		int index = 0;
 		
     	if(saveAction == SaveAction.EDITING_SONG) {
-	    	int index = songList.getSelectionModel().getSelectedIndex();
+	    	index = songList.getSelectionModel().getSelectedIndex();
 	    	Song song = obsSongList.get(index);
 	    	if(checkValidSong(name, artist, album, year)) {
 	    		song.setName(name);
@@ -145,6 +139,7 @@ public class SongLibController {
 		    	song.setYear(year);
 		    	setEditing(false);
 		    	sort();
+		    	index = findSong(name, artist);
 	    	}
 	        
     	}
@@ -158,7 +153,7 @@ public class SongLibController {
                 
                 setEditing(false);
                 sort();
-                int index = findSong(name, artist);
+                index = findSong(name, artist);
                 System.out.println("Added song, index is:" + index);
                 System.out.println(songList.getSelectionModel().isEmpty());
                 //PROBLEM to fix, thing doesn't select item automatically after adding into an empty list
@@ -166,8 +161,10 @@ public class SongLibController {
     		
     	}
     	SongLibApp.writeToFile();
-    	if(!obsSongList.isEmpty())
+    	if(!obsSongList.isEmpty()) {
     		obsSongList.set(0, obsSongList.get(0));
+    		songList.getSelectionModel().select(index);
+    	}
         
     }
     
