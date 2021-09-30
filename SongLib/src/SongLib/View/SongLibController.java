@@ -156,7 +156,6 @@ public class SongLibController {
                 index = findSong(name, artist);
                 System.out.println("Added song, index is:" + index);
                 System.out.println(songList.getSelectionModel().isEmpty());
-                //PROBLEM to fix, thing doesn't select item automatically after adding into an empty list
     		}
     		
     	}
