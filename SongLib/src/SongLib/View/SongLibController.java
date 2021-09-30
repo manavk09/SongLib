@@ -4,6 +4,7 @@ import SongLib.App.SongLibApp;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Optional;
 
 import SongLib.App.Song;
 import javafx.collections.*;
@@ -11,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
@@ -100,14 +102,23 @@ public class SongLibController {
     	saveButton.setDisable(false);
     	saveButton.setText("Add song");
     
-    	
     }
     
     public void deleteSong(ActionEvent e) {
     	int index = songList.getSelectionModel().getSelectedIndex();
-    	obsSongList.remove(index);
-    	showItem(mainStage);
     	
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.initOwner(mainStage);
+        alert.setTitle("Confirm deletion");
+        alert.setHeaderText("Confirm deletion:");
+        alert.setContentText("Are you sure you want to delete " + obsSongList.get(index));
+        Optional<ButtonType> result = alert.showAndWait();
+		if(result.get() == ButtonType.OK) {
+			obsSongList.remove(index);
+	    	showItem(mainStage);
+		}
+    	
+    	//If there's no songs in the list, then block out the delete button
     	if(obsSongList.isEmpty()) {
     		deleteButton.setDisable(true);
     		editButton.setDisable(true);
