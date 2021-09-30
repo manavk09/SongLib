@@ -1,3 +1,1 @@
-mirror	test	2000	test
-test1	test2	2000	test3
-tooSexy	drake	2021	clb
+too sexy	drake	2021	clb

@@ -25,6 +25,11 @@ public class SongLibApp extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		//S//ystem.out.println("the path is" + System.getProperty("user.dir"));
+		File file = new File("src/songList.txt");
+		if(!file.exists()) {
+			file.createNewFile();
+		}
+	
 		readFromfile();
 
 		
