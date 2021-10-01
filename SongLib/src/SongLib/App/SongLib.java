@@ -19,7 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class SongLibApp extends Application{
+public class SongLib extends Application{
 
 	public static List<Song> songList = new ArrayList<>();
 	@Override
@@ -32,7 +32,6 @@ public class SongLibApp extends Application{
 	
 		readFromfile();
 
-		
 		//Load the songList
 
 		FXMLLoader loader = new FXMLLoader();
@@ -107,7 +106,5 @@ public class SongLibApp extends Application{
 	
 	public static void main(String[] args) {
 		launch(args);
-		
-
 	}
 }

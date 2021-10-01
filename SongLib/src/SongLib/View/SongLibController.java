@@ -4,7 +4,7 @@
  */
 package SongLib.View;
 
-import SongLib.App.SongLibApp;
+import SongLib.App.SongLib;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -51,7 +51,7 @@ public class SongLibController {
     
     public void start(Stage primaryStage) {
         mainStage = primaryStage;
-        obsSongList = FXCollections.observableArrayList(SongLibApp.songList);
+        obsSongList = FXCollections.observableArrayList(SongLib.songList);
         songList.setItems(obsSongList);
         
         songList.getSelectionModel().select(0);
@@ -129,13 +129,13 @@ public class SongLibController {
     		editButton.setDisable(true);
     		setFieldsBlank();
     	}
-    	SongLibApp.writeToFile();
+    	SongLib.writeToFile();
     }
     
     public void editSongInfo(ActionEvent e) {
     	saveAction = SaveAction.EDITING_SONG;
         setEditing(true);
-        SongLibApp.writeToFile();
+        SongLib.writeToFile();
     }
     
     public void saveEdit(ActionEvent e) {
@@ -173,7 +173,7 @@ public class SongLibController {
     	}
     	showItem(mainStage);
     	setEditing(false);
-    	SongLibApp.writeToFile();
+    	SongLib.writeToFile();
     	if(obsSongList.size() == 1) {
     		songList.getSelectionModel().select(0);
     	}
