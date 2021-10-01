@@ -50,7 +50,7 @@ public class Song {
 	}
 	
 	public String toString() {
-		return songName + " - " + artistName;
+		return songName + " | " + artistName;
 	}
 	
 }

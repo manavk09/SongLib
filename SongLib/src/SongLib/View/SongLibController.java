@@ -58,6 +58,7 @@ public class SongLibController {
         songList.getSelectionModel().selectedIndexProperty()
         .addListener((obs, oldval, newval) -> showItem(primaryStage));
         
+        setEditing(false);
         
     }
     
@@ -66,7 +67,7 @@ public class SongLibController {
     		return;
     	
         String name, artist, album, year;
-        System.out.println(songList.getSelectionModel().getSelectedItem());
+        System.out.println("Show item called, showing index: " + songList.getSelectionModel().getSelectedItem());
         name = songList.getSelectionModel().getSelectedItem().getSongName();
         artist = songList.getSelectionModel().getSelectedItem().getArtistName();
         album = songList.getSelectionModel().getSelectedItem().getAlbumName();
@@ -111,10 +112,12 @@ public class SongLibController {
         alert.initOwner(mainStage);
         alert.setTitle("Confirm deletion");
         alert.setHeaderText("Confirm deletion:");
-        alert.setContentText("Are you sure you want to delete " + obsSongList.get(index));
+        alert.setContentText("Are you sure you want to delete " + obsSongList.get(index) + "?");
         Optional<ButtonType> result = alert.showAndWait();
 		if(result.get() == ButtonType.OK) {
 			obsSongList.remove(index);
+			if(!obsSongList.isEmpty() || index != obsSongList.size())
+				songList.getSelectionModel().select(index);
 	    	showItem(mainStage);
 		}
     	
@@ -139,7 +142,6 @@ public class SongLibController {
 		String album = albumField.getText().trim();
 		String year = yearField.getText().trim();
 		int index = 0;
-		
     	if(saveAction == SaveAction.EDITING_SONG) {
 	    	index = songList.getSelectionModel().getSelectedIndex();
 	    	Song song = obsSongList.get(index);
@@ -148,13 +150,12 @@ public class SongLibController {
 		    	song.setAlbumName(album);
 		    	song.setArtistName(artist);
 		    	song.setYear(year);
-		    	setEditing(false);
 		    	sort();
 		    	index = findSong(name, artist);
+		    	songList.getSelectionModel().select(index);
 	    	}
-	        
     	}
-    	else {
+    	else {//Adding song
     		if(checkValidSong(name, artist, album, year)) {
     			Song newSong = new Song(name, artist, year, album);
                 obsSongList.add(newSong);
@@ -162,18 +163,18 @@ public class SongLibController {
                 saveButton.setText("Save");
                 deleteButton.setDisable(false);
                 
-                setEditing(false);
                 sort();
                 index = findSong(name, artist);
-                System.out.println("Added song, index is:" + index);
-                System.out.println(songList.getSelectionModel().isEmpty());
+                songList.getSelectionModel().select(index);
     		}
     		
     	}
+    	showItem(mainStage);
+    	setEditing(false);
     	SongLibApp.writeToFile();
-    	if(!obsSongList.isEmpty()) {
-    		obsSongList.set(0, obsSongList.get(0));
-    		songList.getSelectionModel().select(index);
+    	System.out.println(obsSongList.size());
+    	if(obsSongList.size() == 1) {
+    		songList.getSelectionModel().select(0);
     	}
         
     }
@@ -187,7 +188,12 @@ public class SongLibController {
     			yearNum = Integer.parseInt(year);
     		}
     		int songSearchIndex = findSong(name, artist);
-    		if(!obsSongList.isEmpty() && songSearchIndex >= 0 && songSearchIndex != songList.getSelectionModel().getSelectedIndex()) {
+    		int index = songList.getSelectionModel().getSelectedIndex();
+    		System.out.println("Song search index: " + songSearchIndex);
+    		System.out.println("Selected index: " + index);
+    		System.out.println("Save action: " + saveAction);
+    		
+    		if((saveAction == SaveAction.EDITING_SONG && songSearchIndex >= 0 && songSearchIndex != index) || (saveAction == SaveAction.ADDING_SONG && songSearchIndex >= 0)) {
     			errorType = InputErrorType.SONG_EXISTS;
     		}
     		if(name.isBlank() || artist.isBlank()) {
@@ -199,7 +205,7 @@ public class SongLibController {
     		
     	}
     	catch(Exception e) {
-    		errorType = InputErrorType.INVALID_CHARS;;
+    		errorType = InputErrorType.INVALID_CHARS;
     	}
     	finally{
     		if(errorType != null) {
@@ -270,15 +276,24 @@ public class SongLibController {
     }
     
     public void setEditing(boolean isEditing) {
-    	setFieldsWritable(isEditing);
+    	if(obsSongList.isEmpty()) {
+    		editButton.setDisable(true);
+    		addButton.setDisable(false);
+            deleteButton.setDisable(true);
+            cancelButton.setDisable(true);
+            saveButton.setDisable(true);
+    	}
+    	else {
+    		setFieldsWritable(isEditing);
+            editButton.setDisable(isEditing);
+            addButton.setDisable(isEditing);
+            deleteButton.setDisable(isEditing);
+            cancelButton.setDisable(!isEditing);
+            saveButton.setDisable(!isEditing);
+            songList.setDisable(isEditing);
+    	}
+    	saveButton.setText("Save");
     	
-        editButton.setDisable(isEditing);
-        addButton.setDisable(isEditing);
-        deleteButton.setDisable(isEditing);
-        cancelButton.setDisable(!isEditing);
-        saveButton.setDisable(!isEditing);
-        
-        songList.setDisable(isEditing);
     }
     
     public void setFieldsBlank() {
