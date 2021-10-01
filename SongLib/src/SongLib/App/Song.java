@@ -1,3 +1,7 @@
+/*	Authors:
+ *	Kritik Patel
+ * 	Manav Kumar 
+ */
 package SongLib.App;
 
 public class Song {

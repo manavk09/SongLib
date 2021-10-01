@@ -1,3 +1,7 @@
+/*	Authors:
+ *	Kritik Patel
+ * 	Manav Kumar 
+ */
 package SongLib.App;
 import java.io.BufferedWriter;
 import java.io.File;
