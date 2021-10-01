@@ -280,6 +280,7 @@ public class SongLibController {
             deleteButton.setDisable(true);
             cancelButton.setDisable(true);
             saveButton.setDisable(true);
+            setFieldsWritable(false);
     	}
     	else {
     		setFieldsWritable(isEditing);
