@@ -44,7 +44,6 @@ public class SongLibController {
     	INVALID_CHARS, SONG_EXISTS, EMPTY_SONG_OR_ARTIST;
     }
     private SaveAction saveAction;
-    //private InputErrorType inputError;
     
     public void start(Stage primaryStage) {
         mainStage = primaryStage;
@@ -67,7 +66,6 @@ public class SongLibController {
     		return;
     	
         String name, artist, album, year;
-        System.out.println("Show item called, showing index: " + songList.getSelectionModel().getSelectedItem());
         name = songList.getSelectionModel().getSelectedItem().getSongName();
         artist = songList.getSelectionModel().getSelectedItem().getArtistName();
         album = songList.getSelectionModel().getSelectedItem().getAlbumName();
@@ -172,7 +170,6 @@ public class SongLibController {
     	showItem(mainStage);
     	setEditing(false);
     	SongLibApp.writeToFile();
-    	System.out.println(obsSongList.size());
     	if(obsSongList.size() == 1) {
     		songList.getSelectionModel().select(0);
     	}
@@ -189,9 +186,6 @@ public class SongLibController {
     		}
     		int songSearchIndex = findSong(name, artist);
     		int index = songList.getSelectionModel().getSelectedIndex();
-    		System.out.println("Song search index: " + songSearchIndex);
-    		System.out.println("Selected index: " + index);
-    		System.out.println("Save action: " + saveAction);
     		
     		if((saveAction == SaveAction.EDITING_SONG && songSearchIndex >= 0 && songSearchIndex != index) || (saveAction == SaveAction.ADDING_SONG && songSearchIndex >= 0)) {
     			errorType = InputErrorType.SONG_EXISTS;
